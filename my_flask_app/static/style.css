@@ -1,0 +1,949 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("fonts/Raleway-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======= Переменные ======= */
+:root {
+  --color-bg: #f6f8fa;
+  --color-text: #1b1f23;
+  --color-accent: #4c6ef5;
+  --color-accent-hover: #3b5bdb;
+
+  --color-light: #ffffff;
+  --color-dark2: #063006;
+  --color-dark: #2e2a24;
+  --color-muted: #6c757d;
+  --color-border: #e1e4e8;
+
+  --color-success: #2eb67d;
+  --color-success-hover: #229764;
+  --color-warning: #f0ad4e;
+  --color-warning-hover: #ec971f;
+  --color-danger: #e53c3c;
+  --color-danger-hover: #ec1f1f;
+
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+
+/* ======= Сброс и базовые ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+body {
+  font-family: "Raleway";
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ========= Контейнер ========= */
+.container {
+  max-width: 1400px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+/* ========= Header ========= */
+.header {
+  background: var(--color-dark2);
+  color: var(--color-light);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.header__brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-light);
+  transition: var(--transition);
+}
+
+.header__brand:hover {
+  color: var(--color-accent);
+}
+
+.header__nav {
+  display: flex;
+  gap: 16px;
+}
+
+.header__link {
+  border: 1px solid var(--color-bg);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  color: var(--color-light);
+  transition: var(--transition);
+}
+
+.header__link:hover {
+  border-color: var(--color-light);
+  color: var(--color-dark2);
+  background-color: var(--color-light);
+}
+
+.header__auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__user {
+  font-size: 14px;
+  color: var(--color-light);
+}
+
+/* ========= Main ========= */
+.main {
+  padding: 40px 0;
+  min-height: calc(100vh - 160px);
+}
+
+/* ========= Flash-сообщения ========= */
+.flash-messages {
+  margin-bottom: 20px;
+}
+
+.flash {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.flash--success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash--danger {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.flash--warning {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.flash--info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* ========= Кнопки ========= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(2px);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-light);
+  color: var(--color-light);
+}
+
+.btn--outline:hover {
+  background: var(--color-light);
+  color: var(--color-dark);
+}
+
+.btn--icon {
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+}
+
+.btn--warning {
+  color: var(--color-warning);
+}
+
+.btn--warning:hover {
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.btn--danger {
+  color: var(--color-danger);
+}
+
+.btn--danger:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* ========= Footer ========= */
+.footer {
+  background: var(--color-dark2);
+  color: var(--color-light);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+/* ========= Заголовки и текст ========= */
+.heading {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.text {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+/* ========= Product List (БЭМ) ========= */
+.product-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.product-list__title {
+  font-size: 28px;
+}
+
+.product-list__add-btn {
+  background: var(--color-accent);
+  color: var(--color-light);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.product-list__add-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.product-list__table-wrapper {
+  overflow-x: auto;
+}
+
+.product-list__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list__head {
+  background: var(--color-dark);
+}
+
+.product-list__row:nth-child(even) {
+  background: var(--color-light);
+}
+
+.product-list__cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.product-list__cell--head {
+  color: var(--color-light);
+  text-align: left;
+  font-weight: 500;
+}
+
+.product-list__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.product-list__delete-form {
+  margin: 0;
+}
+
+.product-list__empty {
+  text-align: center;
+  color: var(--color-muted);
+  padding: 40px 0;
+}
+
+
+/* ====== Быстрые метрики на welcome ====== */
+.welcome__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.welcome__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.welcome__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ======= Primary button ======= */
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-light);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-hover);
+}
+
+/* ======= Success button ======= */
+.btn--success {
+  background: var(--color-success);
+  color: var(--color-light);
+}
+
+.btn--success:hover {
+  background: var(--color-success-hover);
+}
+
+/* ======= Large button size ======= */
+.btn--lg {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+.welcome__metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--color-light);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  flex: 1 1 200px;
+}
+
+.welcome__metric--last {
+  flex: 2 1 300px;
+}
+
+.welcome__metric-value {
+  font-size: 32px;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.welcome__metric-label {
+  font-size: 18px;
+  color: var(--color-muted);
+}
+
+.welcome__metric-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.welcome__metric-item {
+  margin: 4px 0;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+/*  */
+/* login */
+/* ======= Страница логина ======= */
+.login {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 40px 0;
+}
+
+.login__container {
+  background: var(--color-light);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login__title {
+  margin-bottom: 24px;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login__field {
+  text-align: left;
+}
+
+.login__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.login__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.login__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.2);
+}
+
+.login__error {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+.login__submit {
+  width: 100%;
+  border: 0;
+  padding: 12px 0;
+  font-size: 16px;
+}
+
+/* ======= Header top (верхняя панель с приветствием) ======= */
+.header__top {
+  background: var(--color-dark2);
+  color: var(--color-light);
+  padding-top: 5px;
+  font-size: 14px;
+  text-align: right;
+}
+
+.header__welcome {
+  color: var(--color-border);
+}
+
+/* ======= Header (нижняя часть с навигацией) ======= */
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* === Показываем описание и делаем обрезку === */
+.product-list__cell--desc-header,
+.product-list__cell--desc {
+  display: table-cell;
+  /* отменяем старое скрытие */
+}
+
+/* Ограничиваем ширину и включаем CSS-ellipsis */
+.product-list__cell--desc {
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Можно чуть изменить цвет текста описания */
+.product-list__cell--desc {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+
+/* ======= вспомогательные утилиты ======= */
+.section--airy {
+  padding: 80px 0;
+  background: var(--color-bg);
+}
+
+.card {
+  background: var(--color-light);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition);
+}
+
+.card--lift:hover {
+  transform: translateY(-4px);
+}
+
+.form--stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.btn--outline-accent {
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  background: transparent;
+  transition: background var(--transition), color var(--transition);
+}
+
+.btn--outline-accent:hover {
+  background: var(--color-accent);
+  color: var(--color-light);
+}
+
+.btn--lg {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* ======= стили для блока brand-form ======= */
+.brand-form__container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.brand-form__title {
+  margin-bottom: 32px;
+  font-size: 28px;
+  color: var(--color-dark);
+}
+
+.brand-form__form {
+  width: 100%;
+}
+
+.brand-form__field {
+  text-align: left;
+}
+
+.brand-form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.brand-form__input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.brand-form__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.2);
+}
+
+.brand-form__input--error {
+  border-color: var(--color-danger);
+}
+
+.brand-form__error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+.brand-form__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+
+/* ======= Block brand-list ======= */
+.brand-list {
+  padding: 80px 0;
+}
+
+.brand-list__container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.brand-list__title {
+  font-size: 28px;
+}
+
+.brand-list__add-btn {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+/* ======= Table ======= */
+.brand-list__table-wrapper {
+  overflow-x: auto;
+}
+
+.brand-list__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.brand-list__head {
+  background: var(--color-dark);
+}
+
+.brand-list__row:nth-child(even) {
+  background: var(--color-light);
+}
+
+.brand-list__cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.brand-list__cell--head {
+  color: var(--color-light);
+  font-weight: 500;
+  text-align: left;
+}
+
+/* ======= Actions ======= */
+.brand-list__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Утилитные кнопки уже есть: btn--icon, btn--warning, btn--danger */
+
+/* ======= Empty state ======= */
+.brand-list__empty {
+  text-align: center;
+  color: var(--color-muted);
+  padding: 40px 0;
+}
+
+/* ===== Блок delete-brand ===== */
+.delete-brand {
+  padding: 80px 0;
+  background: var(--color-bg);
+}
+
+.delete-brand__container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.delete-brand__box {
+  overflow: hidden;
+}
+
+/* Заголовок */
+.delete-brand__header {
+  background: var(--color-danger);
+  color: var(--color-light);
+  padding: 16px 24px;
+}
+
+.delete-brand__title {
+  font-size: 22px;
+  margin: 0;
+}
+
+/* Тело карточки */
+.delete-brand__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.delete-brand__text {
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+/* Инфо-блок */
+.delete-brand__info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-warning);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+}
+
+.delete-brand__info-label {
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+.delete-brand__badge {
+  background: var(--color-danger);
+  color: var(--color-light);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Кнопки действий */
+.delete-brand__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.delete-brand__btn {
+  min-width: 100px;
+}
+
+
+/*  */
+/* ======= Блок product-form ======= */
+.product-form__container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  text-align: left;
+}
+
+.product-form__title {
+  margin-bottom: 32px;
+  font-size: 28px;
+  text-align: center;
+  color: var(--color-dark);
+}
+
+.product-form__form {
+  width: 100%;
+}
+
+/* Поля формы */
+.product-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-form__label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.product-form__input,
+.product-form__select,
+.product-form__textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.product-form__input:focus,
+.product-form__select:focus,
+.product-form__textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.2);
+}
+
+.product-form__input--error {
+  border-color: var(--color-danger);
+}
+
+.product-form__error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+/* Специально для цены */
+.product-form__field--currency .product-form__currency-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-form__currency {
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+/* Текстовое описание */
+.product-form__textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Кнопки действий */
+.product-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+/* ======= Блок home (главная страница) ======= */
+.home__container {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.home__title {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: var(--color-dark);
+}
+
+.home__text {
+  font-size: 18px;
+  margin-bottom: 32px;
+  color: var(--color-muted);
+}
+
+.home__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+
+/* ======= Страница входа ======= */
+.login {
+  padding: 80px 0;
+  background: var(--color-bg);
+}
+
+.login__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.login__box {
+  background: var(--color-light);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 48px 32px;
+  width: 320px;
+  max-width: 600px;
+}
+
+.login__title {
+  margin-bottom: 24px;
+  text-align: center;
+  color: var(--color-dark);
+}
+
+.login__form {
+  width: 100%;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.login__input {
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.login__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.2);
+}
+
+.login__input--error {
+  border-color: var(--color-danger);
+}
+
+.login__error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+.login__actions {
+  display: flex;
+  justify-content: center;
+}
+
+.login__submit {
+  width: 100%;
+}

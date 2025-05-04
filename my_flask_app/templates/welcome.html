@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Добро пожаловать — TechStore{%
+endblock %} {% block content %}
+<section class="welcome">
+  <div class="welcome__container container">
+    <div class="welcome__block">
+      <h1 class="welcome__title heading">
+        Добро пожаловать, {{ current_user.username }}!
+      </h1>
+      <p class="welcome__subtitle text">
+        Вы вошли в систему как
+        <span class="welcome__role">
+          {% if current_user.is_admin %}администратор{% else %}пользователь{%
+          endif %}.
+        </span>
+      </p>
+      <div class="welcome__actions">
+        <a href="{{ url_for('products') }}" class="btn btn--primary btn--lg">
+          Перейти к товарам
+        </a>
+        {% if current_user.is_admin %}
+        <a href="{{ url_for('list_brands') }}" class="btn btn--success btn--lg">
+          Управление брендами
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Быстрые метрики -->
+    <div class="welcome__metrics">
+      <div class="welcome__metric">
+        <h2 class="welcome__metric-value heading">{{ products_count }}</h2>
+        <p class="welcome__metric-label text">Всего товаров</p>
+      </div>
+      <div class="welcome__metric">
+        <h2 class="welcome__metric-value heading">{{ brands_count }}</h2>
+        <p class="welcome__metric-label text">Всего брендов</p>
+      </div>
+      <div class="welcome__metric welcome__metric--last">
+        <h2 class="welcome__metric-value heading">Последние</h2>
+        <ul class="welcome__metric-list">
+          {% for p in last_products %}
+          <li class="welcome__metric-item text">— {{ p.name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

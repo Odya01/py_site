@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %} {% if is_new %}Добавить товар{% else
+%}Редактировать товар — {{ product.name }}{% endif %} {% endblock %} {% block
+content %}
+<section class="product-form section--airy">
+  <div class="product-form__container container card card--lift">
+    <h2 class="product-form__title heading">
+      {% if is_new %} + Добавление нового товара {% else %} ✎ Редактирование
+      товара: <br />
+      {{ product.name }} {% endif %}
+    </h2>
+    <form method="POST" class="product-form__form form--stack" novalidate>
+      {{ form.hidden_tag() }}
+
+      <!-- Название -->
+      <div class="product-form__field">
+        {{ form.name.label(class="product-form__label") }} {{
+        form.name(class="product-form__input" + (' product-form__input--error'
+        if form.name.errors else '')) }} {% if form.name.errors %}
+        <div class="product-form__error">{{ form.name.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Цена -->
+      <div class="product-form__field product-form__field--currency">
+        {{ form.price.label(class="product-form__label") }}
+        <div class="product-form__currency-wrapper">
+          {{ form.price(class="product-form__input" + ('
+          product-form__input--error' if form.price.errors else '')) }}
+          <span class="product-form__currency">₽</span>
+        </div>
+        {% if form.price.errors %}
+        <div class="product-form__error">{{ form.price.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Бренд -->
+      <div class="product-form__field">
+        {{ form.brand.label(class="product-form__label") }} {{
+        form.brand(class="product-form__select" + (' product-form__input--error'
+        if form.brand.errors else '')) }} {% if form.brand.errors %}
+        <div class="product-form__error">{{ form.brand.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Описание -->
+      <div class="product-form__field">
+        {{ form.description.label(class="product-form__label") }} {{
+        form.description(class="product-form__textarea"+ ('
+        product-form__input--error' if form.description.errors else '')) }} {%
+        if form.description.errors %}
+        <div class="product-form__error">{{ form.description.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Действия -->
+      <div class="product-form__actions">
+        <a
+          href="{{ url_for('products') }}"
+          class="btn btn--outline-accent btn--lg"
+        >
+          Отмена
+        </a>
+        <button type="submit" class="btn btn--primary btn--lg">
+          {% if is_new %}Создать товар{% else %}Сохранить изменения{% endif %}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

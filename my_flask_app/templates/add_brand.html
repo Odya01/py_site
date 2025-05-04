@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Добавить бренд — TechStore{% endblock
+%} {% block content %}
+<section class="brand-form section--airy">
+  <div class="brand-form__container container card card--lift">
+    <h2 class="brand-form__title heading">Добавить новый бренд</h2>
+    <form method="POST" class="brand-form__form form--stack">
+      {{ form.hidden_tag() }}
+
+      <div class="brand-form__field">
+        {{ form.name.label(class="brand-form__label") }} {{
+        form.name(class="brand-form__input" + (" brand-form__input--error" if
+        form.name.errors else "")) }} {% if form.name.errors %}
+        <div class="brand-form__error">{{ form.name.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <div class="brand-form__actions">
+        {{ form.submit(class="btn btn--outline-accent btn--lg") }}
+        <a
+          href="{{ url_for('list_brands') }}"
+          class="btn btn--outline-accent btn--lg"
+          >Отмена</a
+        >
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

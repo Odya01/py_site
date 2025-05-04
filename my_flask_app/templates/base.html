@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>{% block title %}TechStore — Магазин техники{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <header class="header">
+      {% if current_user.is_authenticated %}
+      <div class="header__top container">
+        <span class="header__welcome"
+          >Логин: <b>{{ current_user.username }}</b>
+        </span>
+      </div>
+      {% endif %}
+
+      <div class="header__container container">
+        <div class="header__left">
+          <a
+            href="{{ url_for('welcome' if current_user.is_authenticated else 'login') }}"
+            class="header__brand"
+            >TechStore</a
+          >
+          {% if current_user.is_authenticated %}
+          <nav class="header__nav">
+            <a href="{{ url_for('products') }}" class="header__link">Товары</a>
+            <a href="{{ url_for('list_brands') }}" class="header__link"
+              >Бренды</a
+            >
+          </nav>
+          {% endif %}
+        </div>
+
+        <div class="header__auth">
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('logout') }}" class="btn btn--outline">Выйти</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="btn btn--outline">Войти</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <main class="main container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="flash flash--{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 TechStore — Всё для вашей техники</p>
+      </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

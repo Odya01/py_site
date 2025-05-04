@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% block title %}Список товаров — TechStore{% endblock
+%} {% block content %}
+<section class="product-list">
+  <div class="product-list__header">
+    <h1 class="heading product-list__title">Список товаров</h1>
+    {% if current_user.is_admin %}
+    <a
+      href="{{ url_for('edit_product', id=0) }}"
+      class="btn product-list__add-btn"
+    >
+      + Добавить товар
+    </a>
+    {% endif %}
+  </div>
+
+  {% if products %}
+  <div class="product-list__table-wrapper">
+    <table class="product-list__table">
+      <thead class="product-list__head">
+        <tr class="product-list__row">
+          <th class="product-list__cell product-list__cell--head">ID</th>
+          <th class="product-list__cell product-list__cell--head">Бренд</th>
+          <th class="product-list__cell product-list__cell--head">Название</th>
+          <th class="product-list__cell product-list__cell--head">Цена</th>
+
+          {% if current_user.is_admin %}
+          <th
+            class="product-list__cell product-list__cell--head product-list__cell--desc-header"
+          >
+            Описание
+          </th>
+          <th class="product-list__cell product-list__cell--head">Действия</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody class="product-list__body">
+        {% for product in products %}
+        <tr class="product-list__row">
+          <td class="product-list__cell">{{ product.id }}</td>
+          <td class="product-list__cell">
+            {{ product.brand_rel.name if product.brand_rel else '—' }}
+          </td>
+          <td class="product-list__cell">{{ product.name }}</td>
+          <td class="product-list__cell">
+            {{ "{:,.2f} ₽".format(product.price).replace(",", " ") }}
+          </td>
+
+          {% if current_user.is_admin %}
+          <td class="product-list__cell product-list__cell--desc">
+            {{ product.description[:15] ~ ('...' if product.description and
+            product.description|length > 15 else '') }}
+          </td>
+          <td class="product-list__cell">
+            <div class="product-list__actions">
+              <a
+                href="{{ url_for('edit_product', id=product.id) }}"
+                class="btn btn--icon btn--warning"
+                title="Редактировать"
+                >✎</a
+              >
+              <form
+                action="{{ url_for('delete_product', id=product.id) }}"
+                method="POST"
+                class="product-list__delete-form"
+                onsubmit="return confirm('Удалить «{{ product.name }}»?')"
+              >
+                <input
+                  type="hidden"
+                  name="csrf_token"
+                  value="{{ csrf_token() }}"
+                />
+                <button
+                  type="submit"
+                  class="btn btn--icon btn--danger"
+                  title="Удалить"
+                >
+                  🗑
+                </button>
+              </form>
+            </div>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="product-list__empty">Нет доступных товаров</p>
+  {% endif %}
+</section>
+{% endblock %}

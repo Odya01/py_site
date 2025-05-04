@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Вход — TechStore{% endblock %} {%
+block content %}
+<section class="login">
+  <div class="login__wrapper container">
+    <div class="login__box card card--lift">
+      <h2 class="login__title heading">Вход в систему</h2>
+      <form method="POST" class="login__form form--stack" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="login__field">
+          {{ form.username.label(class="login__label") }} {{
+          form.username(class="login__input" + (" login__input--error" if
+          form.username.errors else "")) }} {% for error in form.username.errors
+          %}
+          <div class="login__error">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="login__field">
+          {{ form.password.label(class="login__label") }} {{
+          form.password(class="login__input" + (" login__input--error" if
+          form.password.errors else "")) }} {% for error in form.password.errors
+          %}
+          <div class="login__error">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="login__actions">
+          {{ form.submit(class="btn btn--primary btn--lg login__submit") }}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

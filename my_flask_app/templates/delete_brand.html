@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Удалить бренд — TechStore{% endblock
+%} {% block content %}
+<section class="delete-brand section--airy">
+  <div class="delete-brand__container container">
+    <div class="delete-brand__box card card--lift">
+      <header class="delete-brand__header">
+        <h2 class="delete-brand__title heading">⚠️ Подтверждение удаления</h2>
+      </header>
+      <div class="delete-brand__body">
+        <p class="delete-brand__text">
+          Бренд: <strong>{{ brand.name }}</strong>
+        </p>
+        <div class="delete-brand__info">
+          <span class="delete-brand__info-label">Будет удалено товаров:</span>
+          <span class="delete-brand__badge">{{ product_count }}</span>
+        </div>
+        <form method="POST" class="delete-brand__form">
+          {{ form.hidden_tag() }}
+          <div class="delete-brand__actions">
+            <a
+              href="{{ url_for('list_brands') }}"
+              class="btn btn--outline-accent delete-brand__btn"
+            >
+              Отмена
+            </a>
+            <button type="submit" class="btn btn--danger delete-brand__btn">
+              Удалить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block title %}Управление брендами — TechStore{%
+endblock %} {% block content %}
+<section class="brand-list">
+  <div class="brand-list__container container">
+    <div class="brand-list__header">
+      <h1 class="heading brand-list__title">Управление брендами</h1>
+      {% if current_user.is_admin %}
+      <a
+        href="{{ url_for('add_brand') }}"
+        class="btn btn--primary brand-list__add-btn"
+      >
+        + Добавить бренд
+      </a>
+      {% endif %}
+    </div>
+
+    {% if brands %}
+    <div class="brand-list__table-wrapper">
+      <table class="brand-list__table">
+        <thead class="brand-list__head">
+          <tr class="brand-list__row">
+            <th class="brand-list__cell brand-list__cell--head">ID</th>
+            <th class="brand-list__cell brand-list__cell--head">Название</th>
+            {% if current_user.is_admin %}
+            <th class="brand-list__cell brand-list__cell--head">Действия</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody class="brand-list__body">
+          {% for brand in brands %}
+          <tr class="brand-list__row">
+            <td class="brand-list__cell">{{ brand.id }}</td>
+            <td class="brand-list__cell">{{ brand.name }}</td>
+            {% if current_user.is_admin %}
+            <td class="brand-list__cell">
+              <div class="brand-list__actions">
+                <a
+                  href="{{ url_for('edit_brand', id=brand.id) }}"
+                  class="btn btn--icon btn--warning"
+                  title="Редактировать"
+                  >✎</a
+                >
+                <a
+                  href="{{ url_for('delete_brand', id=brand.id) }}"
+                  class="btn btn--icon btn--danger"
+                  onclick="return confirm('Удалить бренд «{{ brand.name }}»? Это также удалит все связанные товары!')"
+                  title="Удалить"
+                  >🗑</a
+                >
+              </div>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="brand-list__empty">Нет брендов</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
