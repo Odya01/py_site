@@ -269,7 +269,7 @@ body {
 }
 
 .product-list__head {
-  background: var(--color-dark);
+  background: var(--color-dark2);
 }
 
 .product-list__row:nth-child(even) {
@@ -652,7 +652,7 @@ body {
 }
 
 .brand-list__head {
-  background: var(--color-dark);
+  background: var(--color-dark2);
 }
 
 .brand-list__row:nth-child(even) {
